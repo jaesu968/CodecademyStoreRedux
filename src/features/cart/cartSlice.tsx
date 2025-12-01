@@ -45,7 +45,10 @@ export const cartReducer = (cart = initialCart, action) => {
       }
 
       // Return a copy of the cart with the updatedItem included.
-      return {};
+      return {
+        ...cart, 
+        [name]: updatedItem
+      };
     }
     default: {
       return cart;
