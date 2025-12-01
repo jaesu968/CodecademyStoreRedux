@@ -18,3 +18,4 @@ const render = () => {
 render();
 
 // Subscribe render to the store.
+store.subscribe(render);
