@@ -3,9 +3,9 @@ import React, { useEffect } from 'react';
 import {
   calculatePrice,
   getCurrencySymbol,
-} from '../../utilities/utilities.tsx';
-import { addItem } from '../cart/cartSlice.tsx';
-import { loadData } from './inventorySlice.tsx';
+} from '../../app/utilities/utilities';
+import { addItem } from '../cart/cartSlice';
+import { loadData } from './inventorySlice';
 
 export const Inventory = ({ inventory, currencyFilter, dispatch }) => {
   const onMount = () => {
