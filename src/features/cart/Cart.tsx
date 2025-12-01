@@ -23,7 +23,7 @@ export const Cart = (props) => {
   };
 
   // Use the cart and currencyFilter slices to render their data.
-  const cartElements = 'REPLACE_ME';
+  const cartElements = Object.keys(cart).map(createCartItem);
   const total = 0;
 
   return (
