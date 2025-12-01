@@ -6,6 +6,16 @@ export const addItem = (itemToAdd) => {
 };
 
 // Create your changeItemQuantity action creator here.
+// two parameters: name (string) and newQuantity (number) 
+// should return an object with two properties: type and payload
+// the payload should be an object with a .name and .newQuantity property 
+// export this function 
+export const changeItemQuantity = (name, newQuantity) => {
+  return {
+    type: 'cart/changeItemQuantity',
+    payload: { name, newQuantity }
+  }
+}
 
 
 const initialCart = {};
