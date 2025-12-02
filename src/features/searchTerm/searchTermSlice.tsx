@@ -15,5 +15,33 @@ Extra Credit:
     * See SearchTerm.js for how this will be used.
 
 */
+// setSearchTerm 
+export const setSearchTerm = (term) => {
+    return {
+        type: 'searchTerm/setSearchTerm',
+        payload: term
+    }
+}
+// clearSearchTerm 
+export const clearSearchTerm = () => {
+    return {
+        type: 'searchTerm/clearSearchTerm'
+    }
+}
+
+// initialState
+const initialSearchTerm = ''; 
+// searchTermReducer
+export const searchTermReducer = (searchTerm = initialSearchTerm, action) => 
+{
+    switch(action.type){
+        case 'searchTerm/setSearchTerm': 
+            return action.payload
+        case 'searchTerm/clearSearchTerm':
+            return ''
+        default: 
+            return searchTerm; 
+    }
+}
 
 

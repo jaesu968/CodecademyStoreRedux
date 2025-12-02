@@ -9,7 +9,7 @@ const clearIconUrl =
 export const SearchTerm = (props) => {
   const { searchTerm, dispatch } = props;
 
-  const onSearchTermChangeHandler = (e) => {
+  const onSearchTermChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const userInput = e.target.value;
     dispatch(setSearchTerm(userInput));
   };

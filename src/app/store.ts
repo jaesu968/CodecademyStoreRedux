@@ -1,14 +1,18 @@
-// Import createStore and combineReducers here.
-import { createStore, combineReducers } from 'redux'; 
+import { createStore, combineReducers, Dispatch, AnyAction } from 'redux'; 
 
-// Import the slice reducers here.
 import { inventoryReducer } from '../features/inventory/inventorySlice'; 
 import { cartReducer } from '../features/cart/cartSlice';
 import { currencyFilterReducer } from '../features/currencyFilter/currencyFilterSlice';
+import { searchTermReducer } from '../features/searchTerm/searchTermSlice';
 
-// Create and export the store here.
-export const store = createStore(combineReducers({
+const rootReducer = combineReducers({
+    searchTerm: searchTermReducer,
     inventory: inventoryReducer,
     cart: cartReducer,
-    currencyFilter: currencyFilterReducer
-})); 
+    currencyFilter: currencyFilterReducer,
+});
+
+export const store = createStore(rootReducer);
+
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppDispatch = typeof store.dispatch; 

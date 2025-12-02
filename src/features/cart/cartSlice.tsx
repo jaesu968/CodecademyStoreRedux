@@ -1,25 +1,47 @@
-export const addItem = (itemToAdd) => {
+// Represents a single item in the cart
+export interface CartItem {
+  price: number;
+  quantity: number;
+}
+
+// Represents the entire cart (object with item names as keys)
+export type Cart = Record<string, CartItem>;
+
+// Action object type for adding an item to cart
+interface AddItemAction {
+  type: 'cart/addItem';
+  payload: { name: string; price: number };
+}
+
+// Action object type for changing item quantity
+interface ChangeItemQuantityAction {
+  type: 'cart/changeItemQuantity';
+  payload: { name: string; newQuantity: number };
+}
+
+// Union type for all possible cart actions
+type CartAction = AddItemAction | ChangeItemQuantityAction | { type: 'unknown' };
+
+// Action creator that adds an item to the cart
+export const addItem = (itemToAdd: { name: string; price: number }): AddItemAction => {
   return {
     type: 'cart/addItem',
     payload: itemToAdd,
   };
 };
 
-// Create your changeItemQuantity action creator here.
-// two parameters: name (string) and newQuantity (number) 
-// should return an object with two properties: type and payload
-// the payload should be an object with a .name and .newQuantity property 
-// export this function 
-export const changeItemQuantity = (name, newQuantity) => {
+// Action creator that changes the quantity of an item in the cart
+export const changeItemQuantity = (name: string, newQuantity: number): ChangeItemQuantityAction => {
   return {
     type: 'cart/changeItemQuantity',
     payload: { name, newQuantity }
   }
 }
 
+const initialCart: Cart = {};
 
-const initialCart = {};
-export const cartReducer = (cart = initialCart, action) => {
+// Reducer function that handles cart state changes
+export const cartReducer = (cart: Cart = initialCart, action: CartAction): Cart => {
   switch (action.type) {
     case 'cart/addItem': {
       const { name, price } = action.payload;

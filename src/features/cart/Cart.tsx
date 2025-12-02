@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { FC } from 'react';
+import { Dispatch } from 'redux';
+
 import {
   calculateTotal,
   getCurrencySymbol,
 } from '../../app/utilities/utilities';
+import { changeItemQuantity, type Cart as CartType } from './cartSlice';
 
-// Import the changeItemQuantity() action creator.
+// Props interface for the Cart component
+interface CartProps {
+  cart: CartType;
+  currencyFilter: string;
+  dispatch: Dispatch;
+}
 
-export const Cart = (props) => {
+// Cart component that displays items and their total price
+export const Cart: FC<CartProps> = (props) => {
   const { cart, currencyFilter, dispatch } = props;
 
   const onInputChangeHandler = (name, input) => {
@@ -19,6 +28,7 @@ export const Cart = (props) => {
     const newQuantity = Number(input);
 
     // Dispatch an action to change the quantity of the given name and quantity.
+    dispatch(changeItemQuantity(name, newQuantity ));
 
   };
 

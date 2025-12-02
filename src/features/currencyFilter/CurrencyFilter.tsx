@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { FC } from 'react';
+import { Dispatch } from 'redux';
 
-import { currenciesData } from '../../../data.tsx';
-import { setCurrency } from './currencyFilterSlice.tsx';
+import { currenciesData } from '../../../data';
+import { setCurrency } from './currencyFilterSlice';
 
-export const CurrencyFilter = ({ currencyFilter, dispatch }) => {
+// Props interface for the CurrencyFilter component
+interface CurrencyFilterProps {
+  currencyFilter: string;
+  dispatch: Dispatch;
+}
+
+// CurrencyFilter component that allows users to select a currency
+export const CurrencyFilter: FC<CurrencyFilterProps> = ({ currencyFilter, dispatch }) => {
   const onClickHandler = (currency) => {
     dispatch(setCurrency(currency));
   };
